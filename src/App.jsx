@@ -1,14 +1,14 @@
-import './App.css'
+import './App.scss'
+import React from 'react';
+import CharacterList from './components/CharacterList';
 
-function App() {
-
+const App = () => {
   return (
-    <>
-    <div>
-      <h1>Rick n Morty characters</h1>
+    <div >
+      <h1>Rick and Morty Characters</h1>
+      <CharacterList />
     </div>
-    </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
