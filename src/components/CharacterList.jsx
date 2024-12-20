@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
+import { useTranslation } from 'react-i18next';
 import './CharacterList.css';
 
 // GraphQL query with variables
@@ -27,6 +28,7 @@ const GET_CHARACTERS = gql`
 `;
 
 const CharacterList = () => {
+  const { t, i18n } = useTranslation();
   const [page, setPage] = useState(1);
   const [status, setStatus] = useState('');
   const [species, setSpecies] = useState('');
@@ -36,7 +38,7 @@ const CharacterList = () => {
     variables: { page, status, species },
   });
 
-  if (loading) return <div className="loader">Loading...</div>;
+  if (loading) return <div className="loader">{t('Loading..')}</div>;
   if (error) return <div className="error">Error: {error.message}</div>;
 
   // Sorting logic
@@ -51,27 +53,27 @@ const CharacterList = () => {
 
   return (
     <div className="character-list-container">
-      <h1>Rick and Morty Characters</h1>
+      <h1>{t('title')}</h1>
 
       {/* Filters */}
       <div className="filters">
         <select onChange={(e) => setStatus(e.target.value)} value={status}>
-          <option value="">All Status</option>
-          <option value="Alive">Alive</option>
-          <option value="Dead">Dead</option>
-          <option value="unknown">Unknown</option>
+          <option value="">{t('status.all')}</option>
+          <option value="Alive">{t('status.alive')}</option>
+          <option value="Dead">{t('status.dead')}</option>
+          <option value="unknown">{t('status.unknown')}</option>
         </select>
 
         <select onChange={(e) => setSpecies(e.target.value)} value={species}>
-          <option value="">All Species</option>
-          <option value="Human">Human</option>
-          <option value="Alien">Alien</option>
+          <option value="">{t('species.all')}</option>
+          <option value="Human">{t('species.human')}</option>
+          <option value="Alien">{t('species.alien')}</option>
         </select>
 
         <select onChange={(e) => setSortBy(e.target.value)} value={sortBy}>
-          <option value="">No Sorting</option>
-          <option value="name">Sort by Name</option>
-          <option value="origin">Sort by Origin</option>
+          <option value="">{t('sorting.none')}</option>
+          <option value="name">{t('sorting.name')}</option>
+          <option value="origin">{t('sorting.origin')}</option>
         </select>
       </div>
 
@@ -86,16 +88,23 @@ const CharacterList = () => {
             />
             <h3>{character.name}</h3>
             <p>
-              <strong>Status:</strong>{' '}
+              <strong>{t('character.status')}:</strong>{' '}
               <span
                 className={`status ${character.status.toLowerCase()}`}
               >
-                {character.status}
+                {t(`status.${character.status.toLowerCase()}`)}
               </span>
             </p>
-            <p><strong>Species:</strong> {character.species}</p>
-            <p><strong>Gender:</strong> {character.gender}</p>
-            <p><strong>Origin:</strong> {character.origin?.name || 'Unknown'}</p>
+            <p>
+              <strong>{t('character.species')}:</strong> {character.species}
+            </p>
+            <p>
+              <strong>{t('character.gender')}:</strong> {character.gender}
+            </p>
+            <p>
+              <strong>{t('character.origin')}:</strong>{' '}
+              {character.origin?.name || t('status.unknown')}
+            </p>
           </div>
         ))}
       </div>
@@ -107,17 +116,26 @@ const CharacterList = () => {
           disabled={!data.characters.info.prev}
           className="pagination-button"
         >
-          Previous
+          {t('pagination.previous')}
         </button>
-        <span>Page {page}</span>
+        <span>
+          {t('pagination.page')} {page}
+        </span>
         <button
           onClick={() => setPage(page + 1)}
           disabled={!data.characters.info.next}
           className="pagination-button"
         >
-          Next
+          {t('pagination.next')}
         </button>
       </div>
+
+      {/*Language Switcher */}
+      <footer className="footer">
+        <p>Switch Language :</p>
+        <button onClick={() => i18n.changeLanguage('en')}>English</button>
+        <button onClick={() => i18n.changeLanguage('de')}>Deutsch</button>
+      </footer>
     </div>
   );
 };
