@@ -1,6 +1,5 @@
 .character-list-container {
   font-family: Arial, sans-serif;
-  padding: 20px;
   text-align: center;
 }
 
@@ -80,12 +79,45 @@
 
 .loader {
   font-size: 20px;
-  color: #007bff;
-  margin-top: 50px;
+  color: #2c445c;
+  margin: 50px 10px;
 }
 
 .error {
   font-size: 18px;
   color: red;
   margin-top: 50px;
+}
+
+
+.footer {
+  margin: 50px 0 0 0;
+  background-color: #282c34;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: end;
+  font-size: 1.2rem;
+}
+
+.footer p {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.footer button {
+  background-color: #61dafb;
+  color: #282c34;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.footer button:hover {
+  background-color: #21a1f1;
+  transform: scale(1.05);
 }
