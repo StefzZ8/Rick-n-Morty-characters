@@ -1,4 +1,4 @@
-# Rick and Morty Task
+# Rick n Morty Characters 
 
 This project is a React-based application built using Vite as part of my internship. It fetches data about Rick and Morty characters using Apollo Client and supports multiple languages with `react-i18next`.
 
@@ -13,11 +13,11 @@ This project is a React-based application built using Vite as part of my interns
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/<your-username>/<your-repo-name>.git
+   git clone https://github.com/StefzZ8/Rick-n-Morty-characters.git
    ```
 2. Navigate to the project folder:
    ```bash
-   cd <your-repo-name>
+   cd Rick-n-Morty-characters
    ```
 3. Install dependencies:
    ```bash
